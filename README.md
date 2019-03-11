@@ -1,2 +1,2 @@
-# eventshuffler
-eventshuffler implementation
+# eventshuffle
+eventshuffle implementation
