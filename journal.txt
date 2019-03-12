@@ -1,0 +1,10 @@
+Journal
+
+11.03.2019 02:00
+-Initializing needed nodejs libraries
+-Learning typescript
+-Created express routes for endpoints
+
+12.03.2019 03:00
+-Database design
+-Initial sequelize models
