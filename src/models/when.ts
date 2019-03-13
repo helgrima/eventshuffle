@@ -1,6 +1,4 @@
-import {Table, Column, Model, PrimaryKey, DataType, NotNull, AutoIncrement, ForeignKey, HasMany, BelongsTo} from 'sequelize-typescript';
-import Event from "./event";
-import Vote from "./vote";
+import {Table, Column, Model, PrimaryKey, DataType, AutoIncrement, ForeignKey, HasMany, BelongsTo, AllowNull} from 'sequelize-typescript';
 
 @Table({
     timestamps: false,
@@ -15,7 +13,7 @@ class When extends Model<When> {
     })
     id: number
 
-    @NotNull
+    @AllowNull(false)
     @Column({
         type: DataType.DATEONLY,
         field: "date"

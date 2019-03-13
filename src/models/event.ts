@@ -1,4 +1,4 @@
-import {Table, Column, Model, HasMany, PrimaryKey, DataType, NotNull, AutoIncrement} from 'sequelize-typescript';
+import {Table, Column, Model, HasMany, PrimaryKey, DataType, AutoIncrement, AllowNull} from 'sequelize-typescript';
 import When from "./when";
 
 @Table({
@@ -14,7 +14,7 @@ class Event extends Model<Event> {
     })
     id: number
 
-    @NotNull
+    @AllowNull(false)
     @Column({
         type: DataType.STRING,
         field: "name"

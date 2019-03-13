@@ -1,5 +1,4 @@
-import {Table, Column, Model, HasMany, PrimaryKey, DataType, NotNull, AutoIncrement} from 'sequelize-typescript';
-import Vote from "./vote";
+import {Table, Column, Model, HasMany, PrimaryKey, DataType, AutoIncrement, AllowNull} from 'sequelize-typescript';
 
 @Table({
     timestamps: false,
@@ -14,7 +13,7 @@ class Participant extends Model<Participant> {
     })
     id: number
 
-    @NotNull
+    @AllowNull(false)
     @Column({
         type: DataType.STRING,
         field: "name"
