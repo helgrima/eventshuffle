@@ -1,4 +1,4 @@
-import {Table, Column, Model, ForeignKey, PrimaryKey, DataType, BelongsTo} from 'sequelize-typescript';
+import {Table, Column, Model, ForeignKey, PrimaryKey, DataType, BelongsTo, AutoIncrement} from 'sequelize-typescript';
 import When from "./when";
 import Participant from "./participant";
 
@@ -8,6 +8,7 @@ import Participant from "./participant";
 })
 class Vote extends Model<Vote> {
     @PrimaryKey
+    @AutoIncrement
     @Column({
         type: DataType.BIGINT
     })
