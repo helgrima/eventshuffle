@@ -8,3 +8,7 @@ Journal
 12.03.2019 03:00
 -Database design
 -Initial sequelize models
+
+13.03.2019 01:30
+-Design data access layer
+-Implemented some functionality of data access layer
