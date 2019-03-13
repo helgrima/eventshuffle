@@ -1,5 +1,5 @@
 import {Table, Column, Model, HasMany, PrimaryKey, DataType, AutoIncrement, AllowNull} from 'sequelize-typescript';
-import When from "./when";
+import { When } from "./when";
 
 @Table({
     timestamps: false,
@@ -25,4 +25,14 @@ class Event extends Model<Event> {
     dates: When[]
 }
 
-export default Event;
+class EventCreate {
+    name: string
+    dates: Date[]
+
+    constructor(name: string, dates: Date[]) {
+        this.name = name;
+        this.dates = dates;
+    }
+}
+
+export { Event, EventCreate };

@@ -1,6 +1,6 @@
 import {Table, Column, Model, ForeignKey, PrimaryKey, DataType, BelongsTo, AutoIncrement} from 'sequelize-typescript';
-import When from "./when";
-import Participant from "./participant";
+import { When } from "./when";
+import { Participant } from "./participant";
 
 @Table({
     timestamps: false,
@@ -28,4 +28,4 @@ class Vote extends Model<Vote> {
 
 }
 
-export default Vote;
+export { Vote };

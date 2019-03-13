@@ -1,20 +1,21 @@
 import { Request, Response } from "express";
-
+import Database from "./../models/database";
+import { EventCreate } from "./../models/event";
 const express = require("express");
 export let router = express.Router();
 
 router.get("/list", (req: Request, res: Response) => {
-    res.json({
-        "event": "Jake's secret party",
-        "id": 1
-    });
+	let db = new Database();
+	db.listEvents().then((events) => {
+		res.json(events);
+	});
 });
 
 router.post("/", (req: Request, res: Response) => {
-    console.log(req.body);
-    res.json({
-        "id": 1
-    });
+	let db = new Database();
+	db.createEvent(new EventCreate(req.body.name, req.body.dates)).then((event) => {
+		res.json(event);
+	});
 });
 
 router.get("/:id", (req: Request, res: Response) => {

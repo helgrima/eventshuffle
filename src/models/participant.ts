@@ -1,4 +1,5 @@
 import {Table, Column, Model, HasMany, PrimaryKey, DataType, AutoIncrement, AllowNull} from 'sequelize-typescript';
+import { Vote } from "./vote";
 
 @Table({
     timestamps: false,
@@ -24,4 +25,4 @@ class Participant extends Model<Participant> {
     votes: Vote[]
 }
 
-export default Participant;
+export { Participant };
