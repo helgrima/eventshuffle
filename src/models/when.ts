@@ -10,7 +10,7 @@ class When extends Model<When> {
     @PrimaryKey
     @AutoIncrement
     @Column({
-        type: DataType.BIGINT,
+        type: DataType.INTEGER,
         field: "id"
     })
     id: number

@@ -10,7 +10,7 @@ class Vote extends Model<Vote> {
     @PrimaryKey
     @AutoIncrement
     @Column({
-        type: DataType.BIGINT
+        type: DataType.INTEGER
     })
     id: number
 
