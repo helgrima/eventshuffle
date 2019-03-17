@@ -28,4 +28,13 @@ class Vote extends Model<Vote> {
 
 }
 
-export { Vote };
+class VoteCreate {
+    participant: string
+    votes: Date[]
+
+    constructor(participant: string, votes: Date[]) {
+        this.participant = participant;
+        this.votes = votes;
+    }
+}
+export { Vote, VoteCreate };

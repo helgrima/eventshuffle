@@ -22,6 +22,11 @@ class When extends Model<When> {
     })
     date: Date
 
+    @AllowNull(false)
+    @Column({
+        type: DataType.BIGINT,
+        field: "eventId"
+    })
     @ForeignKey(() => Event)
     eventId: number
 
