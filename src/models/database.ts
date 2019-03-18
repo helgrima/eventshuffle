@@ -3,19 +3,23 @@ import { Event, EventCreate } from "./event";
 import { Participant } from "./participant";
 import { Vote, VoteCreate } from "./vote";
 import { When } from "./when";
+import Config from "config";
 
 class Database {
     context: Sequelize;
-    constructor() {
+    constructor() { 
         this.context = new Sequelize({
             dialect: "sqlite",
             username: "root",
             password: "",
-            database: "eventshuffle",
-            storage: "eventshuffle.sqlite"
+            database: Config.get("Database.Name"),
+            storage: Config.get("Database.File"),
         });
         this.context.addModels([Event, Participant, Vote, When]);
-        //this.context.sync();
+        if(Config.get("Database.Sync")) {
+            this.context.sync();
+        }
+        
     }
 
     async listEvents() : Promise<Event[]>  {
