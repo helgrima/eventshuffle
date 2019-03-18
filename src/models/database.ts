@@ -27,17 +27,16 @@ class Database {
         return events;
     }
 
-    async createEvent(eventCreate : EventCreate) : Promise<any> {
-        //type is void for some reason
-        const e = await Event.findOrCreate({
+    async createEvent(eventCreate : EventCreate) : Promise<Event> {
+        const e : Promise<Event> = await Event.findOrCreate({
             defaults: {
                 name: eventCreate.name
             },
             where: {
                 name: eventCreate.name
             }
-        }).then((event: [Event, boolean]) => {
-            Sequelize.Promise.each(eventCreate.dates, (date) => {
+        }).then(async (event: [Event, boolean]) => {
+            await Sequelize.Promise.each(eventCreate.dates, (date) => {
                 return When.findOrCreate({
                     defaults: {
                         date: date,
@@ -51,6 +50,9 @@ class Database {
                      return when;
                 });
             });
+            return event[0];
+        }).catch((error) => {
+            return error;
         });
         return e;
     }
@@ -65,8 +67,8 @@ class Database {
                     where: {
                         name: voteCreate.participant
                     }
-                }).then((participant) => {
-                    return voteCreate.votes.forEach((vote) => {
+                }).then(async (participant) => {
+                    await Sequelize.Promise.each(voteCreate.votes, (vote) => {
                         //when using typescript here, values are left null
                         return When.findOrCreate({
                             defaults: {
