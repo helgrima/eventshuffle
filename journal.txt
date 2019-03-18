@@ -12,3 +12,11 @@ Journal
 13.03.2019 01:30
 -Design data access layer
 -Implemented some functionality of data access layer
+
+17.03.2019 03:30
+-Implemented some more functionality of data access layer
+
+18.03.2019 05:00
+-Learning sequelize
+-Finalized project
+-Code clean up and commenting
