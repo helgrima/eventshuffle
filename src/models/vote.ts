@@ -1,3 +1,6 @@
+/*
+Sequelize definition of Vote table, which couples together participant and desired date of event
+*/
 import {Table, Column, Model, ForeignKey, PrimaryKey, DataType, BelongsTo, AutoIncrement, AllowNull} from 'sequelize-typescript';
 import { When } from "./when";
 import { Participant } from "./participant";

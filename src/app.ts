@@ -1,3 +1,7 @@
+/*
+ Main entry point for software
+ Initializes express and router end points
+ */
 import { RSA_NO_PADDING } from "constants";
 
 const express = require("express");

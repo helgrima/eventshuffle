@@ -1,3 +1,6 @@
+/*
+Sequelize definiton of When table which couples together votes to events.
+*/
 import {Table, Column, Model, PrimaryKey, DataType, AutoIncrement, ForeignKey, HasMany, BelongsTo, AllowNull} from 'sequelize-typescript';
 import { Event } from "./event";
 import { Vote } from "./vote";

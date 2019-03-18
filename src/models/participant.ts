@@ -1,3 +1,7 @@
+/*
+Sequelize definiton of participant, who votes for desired dates. Participant has relation to
+Vote table which holds all votes for different event's dates.
+*/
 import {Table, Column, Model, HasMany, PrimaryKey, DataType, AutoIncrement, AllowNull} from 'sequelize-typescript';
 import { Vote } from "./vote";
 

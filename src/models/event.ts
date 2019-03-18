@@ -1,3 +1,8 @@
+/*
+Sequelize definiton of database table, which represents event. 
+Event has multiple relation to When table, which holds suitable
+dates for event.
+*/
 import {Table, Column, Model, HasMany, PrimaryKey, DataType, AutoIncrement, AllowNull} from 'sequelize-typescript';
 import { When } from "./when";
 
