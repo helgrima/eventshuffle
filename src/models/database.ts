@@ -52,9 +52,9 @@ class Database {
     }
 
     async createVote(eventId: number, voteCreate : VoteCreate) : Promise<Event> {
-        const e = await Event.findById(eventId).then((event) => {
+        const e : Promise<Event> = await Event.findById(eventId).then((event) => {
             if(event != null) {
-                Participant.findOrCreate({
+                return Participant.findOrCreate({
                     defaults: {
                         name: voteCreate.participant
                     },
@@ -62,9 +62,9 @@ class Database {
                         name: voteCreate.participant
                     }
                 }).then((participant) => {
-                    Sequelize.Promise.each(voteCreate.votes, (vote) => {
+                    voteCreate.votes.forEach((vote) => {
                         //when using typescript here, values are left null
-                        return When.findOrCreate({
+                        When.findOrCreate({
                             defaults: {
                                 date: new Date(vote),
                                 eventId: event.id,                     
@@ -84,8 +84,7 @@ class Database {
                                     participantId: participant[0].id,
                                     whenId: when[0].id
                                 }
-                            }
-                            ).then((vote) => {
+                            }).then((vote) => {
                                 return vote;
                             }).catch((error) => {
                                 //guru meditation
@@ -98,17 +97,16 @@ class Database {
                     });
                 }).catch((error) => {
                     return error;
-                });
+                });        
             }
-            //unknown event    
         }).catch((error) => {
             return error;
         });
-        return await e;
+        return e;
     }
 
     async oneEvent(id: number) : Promise<any> {
-        const e = Event.findById(id, {
+        const e = await Event.findById(id, {
             attributes: ["id", "name"],
             include: [
                 {
@@ -120,12 +118,11 @@ class Database {
                         {
                             model: Vote,
                             duplicating: false,
-                            required: true,
                             include: [
                                 {
                                     model: Participant,
-                                    duplicating: false,
                                     required: true,
+                                    duplicating: false,
                                     attributes: ["name"],
                                 }
                             ],
@@ -142,7 +139,7 @@ class Database {
                     dates: e.dates.map((d) => {
                         return d.date;
                     }),
-                    votes: e.dates.map((d) => {
+                    votes: e.dates.filter(d => d.votes.length > 0).map((d) => {
                         return {
                             date: d.date,
                             people: d.votes.map((v) => {
@@ -158,7 +155,7 @@ class Database {
             }
             
         });
-        return await e;      
+        return e;      
     }
 
     async voteResults(id: number) : Promise<any> {

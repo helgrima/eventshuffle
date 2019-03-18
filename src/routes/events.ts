@@ -22,12 +22,11 @@ router.post("/", (req: Request, res: Response) => {
 
 router.get("/:id", (req: Request, res: Response) => {
 	let db = new Database();
-	db.oneEvent(req.params.id).then((event) => {
+	db.oneEvent(parseInt(req.params.id)).then((event) => {
 		if(event != null) {
 			return res.json(event);
 		}
 		else {
-
 			return res.status(404).send("Unknown event");
 		}	
 	});
@@ -37,7 +36,12 @@ router.post("/:id/vote", (req: Request, res: Response) => {
 	let db = new Database();
 	db.createVote(req.params.id, new VoteCreate(req.body.name, req.body.votes)).then((vote) => {
 		db.oneEvent(req.params.id).then((event) => {
-			res.json(event);
+			if(event != null) {
+				return res.json(event);
+			}
+			else {
+				return res.status(404).send("Unknown event");
+			}
 		});
 	});
 });
