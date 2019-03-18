@@ -52,7 +52,7 @@ class Database {
     }
 
     async createVote(eventId: number, voteCreate : VoteCreate) : Promise<Event> {
-        const e : Promise<Event> = await Event.findById(eventId).then((event) => {
+        const e = await Event.findById(eventId).then((event) => {
             if(event != null) {
                 return Participant.findOrCreate({
                     defaults: {
@@ -62,9 +62,9 @@ class Database {
                         name: voteCreate.participant
                     }
                 }).then((participant) => {
-                    voteCreate.votes.forEach((vote) => {
+                    return voteCreate.votes.forEach((vote) => {
                         //when using typescript here, values are left null
-                        When.findOrCreate({
+                        return When.findOrCreate({
                             defaults: {
                                 date: new Date(vote),
                                 eventId: event.id,                     
