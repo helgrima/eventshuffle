@@ -4,6 +4,10 @@
   "description": "eventshuffle implementation",
   "main": "app.js",
   "homepage": "https://github.com/helgrima/eventshuffle",
+  "repository": {
+    "type": "",
+    "url": "https://github.com/helgrima/eventshuffle"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

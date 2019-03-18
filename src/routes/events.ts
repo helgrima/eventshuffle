@@ -29,9 +29,8 @@ router.get("/:id", (req: Request, res: Response) => {
 		else {
 
 			return res.status(404).send("Unknown event");
-		}
-		
-	})
+		}	
+	});
 });
 
 router.post("/:id/vote", (req: Request, res: Response) => {
@@ -44,21 +43,14 @@ router.post("/:id/vote", (req: Request, res: Response) => {
 });
 
 router.get("/:id/results", (req: Request, res: Response) => {
-    console.log(req.params);
-    res.json({
-        "id": 0,
-        "name": "Jake's secret party",
-        "suitableDates": [
-          {
-            "date": "2014-01-01",
-            "people": [
-              "John",
-              "Julia",
-              "Paul",
-              "Daisy",
-              "Dick"
-            ]
-          }
-        ]
-      });
+	let db = new Database();
+	db.voteResults(req.params.id).then((results) => {
+		if(results != null) {
+			return res.json(results);
+		}
+		else {
+
+			return res.status(404).send("Unknown event");
+		}	
+	});
 });
