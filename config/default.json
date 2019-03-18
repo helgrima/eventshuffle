@@ -2,6 +2,6 @@
     "Database": {
         "Name": "eventshuffle",
         "File": "eventshuffle.sqlite",
-        "Sync": true
+        "Sync": false
     }
 }
