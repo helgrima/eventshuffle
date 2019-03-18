@@ -9,7 +9,12 @@ let db = new Database();
 
 router.get("/list", (req: Request, res: Response) => {
 	db.listEvents().then((events) => {
-		return res.json(events);
+		if(events.length > 0) {
+			return res.json(events);
+		}
+		else {
+			return res.status(404).send("No events");
+		}
 	});
 });
 
