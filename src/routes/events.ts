@@ -37,7 +37,9 @@ router.get("/:id", (req: Request, res: Response) => {
 router.post("/:id/vote", (req: Request, res: Response) => {
 	let db = new Database();
 	db.createVote(req.params.id, new VoteCreate(req.body.name, req.body.votes)).then((vote) => {
-		res.json(vote);
+		db.oneEvent(req.params.id).then((event) => {
+			res.json(event);
+		});
 	});
 });
 

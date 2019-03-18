@@ -43,8 +43,8 @@ class Database {
         return e;
     }
 
-    async createVote(eventId: number, voteCreate : VoteCreate) : Promise<any> {
-        const e = Event.findById(eventId).then((event) => {
+    async createVote(eventId: number, voteCreate : VoteCreate) : Promise<Event> {
+        const e = await Event.findById(eventId).then((event) => {
             if(event != null) {
                 Participant.findOrCreate({
                     defaults: {
@@ -96,7 +96,7 @@ class Database {
         }).catch((error) => {
             return error;
         });
-        return await this.oneEvent(eventId); 
+        return await e;
     }
 
     async oneEvent(id: number) : Promise<any> {
